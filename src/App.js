@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import SelectMovie from "./SelectMovie";
+import SelectTime from "./SelectTime";
+import SelectSeat from "./SelectSeat";
+
 import GlobalStyle from "./GlobalStyle"
 
 export default function App(){
@@ -14,6 +17,10 @@ export default function App(){
                 </Header>
 
                 <SelectMovie/>
+
+                <SelectTime/>
+
+                <SelectSeat/>
             </Body>
         </>
     )
@@ -21,6 +28,7 @@ export default function App(){
 
 const Body = styled.div`
     font-family: roboto;
+    color: #293845;
 `
 const Header = styled.header`
     background-color: rgb(195, 208, 217);
