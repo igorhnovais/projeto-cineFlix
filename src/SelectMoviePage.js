@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function SelectMovie() {
 
-    const [movie, setMovie] = useState([]);
+    const [movie, setMovie] = useState(null);
 
     useEffect(() => {
 
@@ -17,8 +17,16 @@ export default function SelectMovie() {
             setMovie(resp.data)
         }
             
-        promise.catch((erro => {alert('deu ruim')}));
+        promise.catch((erro => {alert('Tente de novo mais tarde')}));
     }, []);
+
+    if(movie === null){
+        return(
+            <Divloading>
+                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif"/>
+            </Divloading>
+        )
+    }
 
     return (
         <>
@@ -28,7 +36,7 @@ export default function SelectMovie() {
                 </SectionTitle>
                 <SectionMovies>
                     <Link to="/selecionar-horario">
-                        {movie.map(item => <img src={item.posterURL} alt={"foto de capa do filme"}key={item.id}/>)}
+                        {movie.map(item => <img src={item.posterURL} alt={"foto de capa do filme"} key={item.id}/>)}
                     </Link>
                 </SectionMovies>
             </Main>
@@ -54,14 +62,28 @@ const SectionTitle = styled.section`
     font-weight: 400;
 `
 
-const SectionMovies = styled.section`
+const SectionMovies = styled.section` 
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    
    img{
     margin-left: 30px;
     width: 140px;
     margin-top: 10px;
    }
+`
+
+const Divloading=styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const ImgLoading = styled.img`
+    width: 300px;
 `

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import GlobalStyle from "./GlobalStyle";
 
-import SelectMovie from "./SelectMovie";
-import SelectTime from "./SelectTime";
-import SelectSeat from "./SelectSeat";
+import SelectMoviePage from "./SelectMoviePage";
+import SelectTimePage from "./SelectTimePage";
+import SelectSeatPage from "./SelectSeatPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -20,11 +20,11 @@ export default function App(){
                 </Header>
 
                 <Routes>
-                    <Route path={"/"} element={<SelectMovie/>} />
+                    <Route path={"/"} element={<SelectMoviePage/>} />
 
-                    <Route path={"/selecionar-horario"} element={<SelectTime/>} />
+                    <Route path={"/selecionar-horario"} element={<SelectTimePage/>} />
 
-                    <Route path={"/selecionar-assento"} element={<SelectSeat/>} />
+                    <Route path={"/selecionar-assento"} element={<SelectSeatPage/>} />
                 </Routes>
             </Body>
         </BrowserRouter>
@@ -35,6 +35,7 @@ const Body = styled.div`
     font-family: roboto;
     color: #293845;
 `
+
 const Header = styled.header`
     background-color: rgb(195, 208, 217);
     height: 67px;
