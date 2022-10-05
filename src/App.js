@@ -1,14 +1,17 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import GlobalStyle from "./GlobalStyle";
+
 import SelectMovie from "./SelectMovie";
 import SelectTime from "./SelectTime";
 import SelectSeat from "./SelectSeat";
 
-import GlobalStyle from "./GlobalStyle"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 export default function App(){
 
     return (
-        <>
+        <BrowserRouter>
             <GlobalStyle/>
 
             <Body>
@@ -16,13 +19,15 @@ export default function App(){
                     <h1> CINEFLEX </h1>
                 </Header>
 
-                <SelectMovie/>
+                <Routes>
+                    <Route path={"/"} element={<SelectMovie/>} />
 
-                <SelectTime/>
+                    <Route path={"/selecionar-horario"} element={<SelectTime/>} />
 
-                <SelectSeat/>
+                    <Route path={"/selecionar-assento"} element={<SelectSeat/>} />
+                </Routes>
             </Body>
-        </>
+        </BrowserRouter>
     )
 }
 

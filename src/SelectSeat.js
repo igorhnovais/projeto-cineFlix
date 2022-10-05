@@ -47,7 +47,7 @@ export default function SelectSeat(){
 }
 
 const Main = styled.main`
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -1,6 +1,24 @@
 import styled from "styled-components"
+import { useState, useEffect } from "react";
+import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export default function SelectMovie() {
+
+    const [movie, setMovie] = useState([]);
+
+    useEffect(() => {
+
+        const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
+
+        promise.then(recebeFilmes);
+
+        function recebeFilmes(resp){
+            setMovie(resp.data)
+        }
+            
+        promise.catch((erro => {alert('deu ruim')}));
+    }, []);
 
     return (
         <>
@@ -9,14 +27,9 @@ export default function SelectMovie() {
                     <h1> Selecione o filme </h1>
                 </SectionTitle>
                 <SectionMovies>
-                    <img src="https://i0.wp.com/animagos.com.br/wp-content/uploads/2016/06/HP-Moments-1.png?ssl=1" />
-                    <img src="https://www.itaucinemas.com.br/_img/_filmes/2276_capa.jpg?Harry-Potter-e-as-Reli%CC%81quias-da-Morte---Parte-2" />
-                    <img src="https://i0.wp.com/animagos.com.br/wp-content/uploads/2016/06/HP-Moments-1.png?ssl=1" />
-                    <img src="https://www.itaucinemas.com.br/_img/_filmes/2276_capa.jpg?Harry-Potter-e-as-Reli%CC%81quias-da-Morte---Parte-2" />
-                    <img src="https://i0.wp.com/animagos.com.br/wp-content/uploads/2016/06/HP-Moments-1.png?ssl=1" />
-                    <img src="https://www.itaucinemas.com.br/_img/_filmes/2276_capa.jpg?Harry-Potter-e-as-Reli%CC%81quias-da-Morte---Parte-2" />
-                    <img src="https://i0.wp.com/animagos.com.br/wp-content/uploads/2016/06/HP-Moments-1.png?ssl=1" />
-                    <img src="https://www.itaucinemas.com.br/_img/_filmes/2276_capa.jpg?Harry-Potter-e-as-Reli%CC%81quias-da-Morte---Parte-2" />
+                    <Link to="/selecionar-horario">
+                        {movie.map(item => <img src={item.posterURL} alt={"foto de capa do filme"}key={item.id}/>)}
+                    </Link>
                 </SectionMovies>
             </Main>
         </>
@@ -25,7 +38,7 @@ export default function SelectMovie() {
 }
 
 const Main = styled.main`
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -42,14 +55,13 @@ const SectionTitle = styled.section`
 `
 
 const SectionMovies = styled.section`
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
    img{
-    width: 120px;
-    margin-right: 20px;
+    margin-left: 30px;
+    width: 140px;
     margin-top: 10px;
    }
 `

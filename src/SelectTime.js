@@ -39,7 +39,8 @@ export default function SelectTime() {
 }
 
 const Main = styled.main`
-    display: none;
+    display: flex;
+    flex-direction: column;
 `
 
 const SectionTitle = styled.section`
