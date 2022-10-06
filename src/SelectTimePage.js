@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export default function SelectTimePage() {
@@ -11,8 +12,6 @@ export default function SelectTimePage() {
 
     const [filme, setFilme] = useState([]);
 
-
-    console.log(idFilme);
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`;
@@ -32,7 +31,9 @@ export default function SelectTimePage() {
 
     if (filme.length === 0) {
         return (
-            <img src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
+            <Divloading>
+                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
+            </Divloading>
         )
     }
 
@@ -52,9 +53,11 @@ export default function SelectTimePage() {
                             </DivDayMovie>
                             <div>
                                 {item.showtimes.map((item) => 
-                                <ButtonTime key={item.id}> 
-                                    {item.name} 
-                                </ButtonTime>)}
+                                <Link to={"/assentos/" + item.id}>
+                                    <ButtonTime key={item.id}> 
+                                        {item.name} 
+                                    </ButtonTime>
+                                </Link>)}
                             </div>
                         </nav>
                     )};
@@ -126,4 +129,16 @@ const Footer = styled.footer`
                 font-size: 26px;
                 color: #293845;
     }
+`
+
+const Divloading = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const ImgLoading = styled.img`
+    width: 300px;
 `

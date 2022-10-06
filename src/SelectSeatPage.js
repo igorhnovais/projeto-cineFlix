@@ -1,6 +1,31 @@
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function SelectSeat(){
+
+    const {idSessao} = useParams();
+
+    const [assento, setAssento] = useState([]);
+
+    useEffect(() => {
+        const URL = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`;
+        const promise = axios.get(URL);
+
+        promise.then(resp => setAssento(resp.data));
+
+        promise.catch((erro => { alert('Tente de novo mais tarde') }));
+    }, [])
+
+    if (assento.length === 0) {
+        return (
+            <Divloading>
+                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
+            </Divloading>
+        )
+    }
+
     return (
         <>
             <Main>
@@ -9,16 +34,10 @@ export default function SelectSeat(){
                 </SectionTitle>
 
                 <SectionAllSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
-                    <DivSeats> 01 </DivSeats>
+                    {assento.seats.map((item) => 
+                        <DivSeats key={item.id}> {item.name} </DivSeats>
+                    )}
+                    
                 </SectionAllSeats>
 
                 <SectionReservAsset>
@@ -35,10 +54,10 @@ export default function SelectSeat(){
                 <ButtonReservAsset> Reservar assento(s)</ButtonReservAsset>
 
                 <Footer>
-                    <img src="https://i0.wp.com/animagos.com.br/wp-content/uploads/2016/06/HP-Moments-1.png?ssl=1" />
+                    <img src={assento.movie.posterURL} />
                     <div>
-                        <h3> Harry Potter </h3>
-                        <h3> Quinta-feira - 15:00 </h3>
+                        <h3> {assento.movie.title} </h3>
+                        <h3> {assento.day.weekday} - {assento.name} </h3>
                     </div>
                 </Footer>
             </Main>
@@ -47,7 +66,7 @@ export default function SelectSeat(){
 }
 
 const Main = styled.main`
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -65,7 +84,11 @@ const SectionTitle = styled.section`
 
 const SectionAllSeats = styled.section`
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
+    margin: 0 10px;
 `
 
 const DivSeats = styled.div`
@@ -102,6 +125,7 @@ const ButtonReservAsset = styled.button`
     width: 225px;
     height: 42px;
     margin-top: 40px;
+    margin-bottom: 10px;
 `
 
 const Footer = styled.footer`
@@ -124,6 +148,18 @@ const Footer = styled.footer`
         font-size: 24px;
         color: #293845;
     }
+`
+
+const Divloading = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const ImgLoading = styled.img`
+    width: 300px;
 `
 
 
