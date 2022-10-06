@@ -89,7 +89,8 @@ const SectionTitle = styled.section`
 `
 
 const SectionDayTime = styled.section`
-            margin-left: 24px;
+    margin-left: 24px;
+    margin-bottom: 117px;
 `
 
 const DivDayMovie = styled.div`
@@ -110,25 +111,25 @@ const ButtonTime = styled.button`
 `
 
 const Footer = styled.footer`
-            width: 100%;
-            height: 117px;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            position: fixed;
-            bottom: 0;
-            background-color: rgb(223, 230, 238);
-            margin-left: 24px;
+    width: 100%;
+    height: 117px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(223, 230, 238);
+    margin-left: 24px;
 
-            img{
-                width: 50px;
-                margin-right: 15px;
-                border: 8px solid white;  
+    img{
+        width: 50px;
+        margin-right: 15px;
+        border: 8px solid white;  
     }
-            h3{
-                font-size: 26px;
-                color: #293845;
-    }
+    h3{
+        font-size: 26px;
+        color: #293845;
+    }   
 `
 
 const Divloading = styled.div`
