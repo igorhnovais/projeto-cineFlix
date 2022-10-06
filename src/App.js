@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GlobalStyle from "./GlobalStyle";
+import { Link } from "react-router-dom";
 
 import SelectMoviePage from "./SelectMoviePage";
 import SelectTimePage from "./SelectTimePage";
@@ -8,23 +9,25 @@ import SelectSeatPage from "./SelectSeatPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
-export default function App(){
+export default function App() {
 
     return (
         <BrowserRouter>
-            <GlobalStyle/>
+            <GlobalStyle />
 
             <Body>
                 <Header>
-                    <h1> CINEFLEX </h1>
+                    <Link to="/">
+                        <h1> CINEFLEX </h1>
+                    </Link>
                 </Header>
 
                 <Routes>
-                    <Route path={"/"} element={<SelectMoviePage/>} />
+                    <Route path={"/"} element={<SelectMoviePage />} />
 
-                    <Route path={"/selecionar-horario"} element={<SelectTimePage/>} />
+                    <Route path={"/sessoes/:idFilme"} element={<SelectTimePage />} />
 
-                    <Route path={"/selecionar-assento"} element={<SelectSeatPage/>} />
+                    <Route path={""} element={<SelectSeatPage />} />
                 </Routes>
             </Body>
         </BrowserRouter>
@@ -47,5 +50,8 @@ const Header = styled.header`
     font-weight: 400;
     h1{
         color: #E8833A;
+    }
+    a{
+        text-decoration: none;
     }
 `

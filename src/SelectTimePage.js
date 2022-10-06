@@ -1,41 +1,73 @@
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
-export default function SelectTime() {
+
+export default function SelectTimePage() {
+
+    const { idFilme } = useParams();
+
+    const [filme, setFilme] = useState([]);
+
+
+    console.log(idFilme);
+
+    useEffect(() => {
+        const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`;
+        const promise = axios.get(URL);
+
+        promise.then(recebeFilme);
+
+        function recebeFilme(resp) {
+            setFilme(resp.data)
+            console.log(resp.data);
+        }
+
+        promise.catch((erro => { alert('Tente de novo mais tarde') }));
+
+
+    }, [])
+
+    if (filme.length === 0) {
+        return (
+            <img src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
+        )
+    }
+
     return (
         <>
             <Main>
                 <SectionTitle>
                     <h1> Selecione o horario </h1>
                 </SectionTitle>
+
                 <SectionDayTime>
-                    <nav>
-                        <DivDayMovie>
-                            <h2> Quinta-feira - 24/06/2021 </h2>
-                        </DivDayMovie>
-                        <div>
-                            <ButtonTime> 15:00 </ButtonTime>
-                            <ButtonTime> 19:00 </ButtonTime>
-                        </div>
-                    </nav>
-                    <nav>
-                        <DivDayMovie>
-                            <h2> Sexta-feira - 25/06/2021 </h2>
-                        </DivDayMovie>
-                        <div>
-                            <ButtonTime> 15:00 </ButtonTime>
-                            <ButtonTime> 19:00 </ButtonTime>
-                        </div>
-                    </nav>
+
+                    {filme.days.map((item) =>
+                        <nav key={item.id}>
+                            <DivDayMovie>
+                                <h2> {item.weekday} - {item.date} </h2>
+                            </DivDayMovie>
+                            <div>
+                                {item.showtimes.map((item) => 
+                                <ButtonTime key={item.id}> 
+                                    {item.name} 
+                                </ButtonTime>)}
+                            </div>
+                        </nav>
+                    )};
 
                 </SectionDayTime>
 
                 <Footer>
-                    <img src="https://i0.wp.com/animagos.com.br/wp-content/uploads/2016/06/HP-Moments-1.png?ssl=1" />
-                    <h3> Harry Potter </h3>
+                    <img src={filme.posterURL} />
+                    <h3> {filme.title} </h3>
                 </Footer>
             </Main>
-            </>
-            )
+        </>
+    )
 }
 
 const Main = styled.main`

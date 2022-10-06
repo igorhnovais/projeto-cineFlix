@@ -13,17 +13,17 @@ export default function SelectMovie() {
 
         promise.then(recebeFilmes);
 
-        function recebeFilmes(resp){
+        function recebeFilmes(resp) {
             setMovie(resp.data)
         }
-            
-        promise.catch((erro => {alert('Tente de novo mais tarde')}));
+
+        promise.catch((erro => { alert('Tente de novo mais tarde') }));
     }, []);
 
-    if(movie === null){
-        return(
+    if (movie === null) {
+        return (
             <Divloading>
-                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif"/>
+                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
             </Divloading>
         )
     }
@@ -33,11 +33,16 @@ export default function SelectMovie() {
             <Main>
                 <SectionTitle>
                     <h1> Selecione o filme </h1>
+
                 </SectionTitle>
                 <SectionMovies>
-                    <Link to="/selecionar-horario">
-                        {movie.map(item => <img src={item.posterURL} alt={"foto de capa do filme"} key={item.id}/>)}
-                    </Link>
+
+                    {movie.map(item =>
+                        <Link to={"/sessoes/" + item.id}>
+                            <img src={item.posterURL} alt={"foto de capa do filme"} key={item.id} />
+                        </Link>
+                    )}
+
                 </SectionMovies>
             </Main>
         </>
@@ -68,15 +73,14 @@ const SectionMovies = styled.section`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    
+    gap: 20px;
    img{
-    margin-left: 30px;
     width: 140px;
     margin-top: 10px;
    }
 `
 
-const Divloading=styled.div`
+const Divloading = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
