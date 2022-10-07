@@ -8,8 +8,9 @@ export default function SelectSeat() {
 
     const { idSessao } = useParams();
 
-    const [assento, setAssento] = useState([]);
+    const [assento, setAssento] = useState([]); //array de objeto
     const [assentoEscolhido, setAssentoEscolhido] = useState([]);
+    const [assentoNumero, setAssentoNumero] = useState([]);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
 
@@ -50,6 +51,9 @@ export default function SelectSeat() {
         )
     }
 
+    console.log(assentoEscolhido);
+    console.log(assentoNumero);
+
     return (
         <>
             <Main>
@@ -59,10 +63,17 @@ export default function SelectSeat() {
 
                 <SectionAllSeats>
                     {assento.seats.map((item) =>
-                        <Seat key={item.id} id={item.id} item={item} disponivel={item.isAvailable}/> 
+                        <Seat key={item.id}
+                            id={item.id}
+                            item={item}
+                            disponivel={item.isAvailable}
+                            setAssentoEscolhido={setAssentoEscolhido}
+                            assentoEscolhido={assentoEscolhido}
+                            assentoNumero={assentoNumero}
+                            setAssentoNumero={setAssentoNumero} />
                     )}
                 </SectionAllSeats>
-                
+
 
                 <SectionTypesSeats>
                     <div>
@@ -81,14 +92,16 @@ export default function SelectSeat() {
                 </SectionTypesSeats>
 
                 <SectionReservAsset>
-                    <div>
-                        <h2> Nome do comprador:</h2>
-                        <input value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Digite seu nome"></input>
-                    </div>
-                    <div>
-                        <h2> Cpf do comprador:</h2>
-                        <input value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu cpf"></input>
-                    </div>
+                    <form>
+                        <div>
+                            <h2> Nome do comprador:</h2>
+                            <input value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Digite seu nome"></input>
+                        </div>
+                        <div>
+                            <h2> Cpf do comprador:</h2>
+                            <input value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu cpf"></input>
+                        </div>
+                    </form>
                 </SectionReservAsset>
 
                 <ButtonReservAsset onClick={reservarAssento}> Reservar assento(s)</ButtonReservAsset>
@@ -126,10 +139,14 @@ const SectionTitle = styled.section`
 
 const SectionTypesSeats = styled.section`
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     margin: 50px;
+    div{
+        display: flex;
+    }
     h4{
         margin-top: 20px;
-        margin-left: 20px;
     }
     
 `

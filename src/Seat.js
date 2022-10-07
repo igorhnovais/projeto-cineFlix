@@ -1,29 +1,49 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Seat({item, disponivel}) {
-    let colorAtual = "rgb(195, 208, 217)" 
+export default function Seat({item, disponivel, assentoEscolhido, setAssentoEscolhido, id, assentoNumero, setAssentoNumero}) {
 
-    const [corAssento, setCorAssento] = useState("");
-
-    function verify(){
-        if(disponivel === false){
-            colorAtual = "rgb(251, 227, 140)"
-        } else if(disponivel === true){
-            colorAtual = "rgb(195, 208, 217)"
-        }
-    }
-    verify();
+    const [corAssento, setCorAssento] = useState("rgb(195, 208, 217)");
+    const [situacao, setSituacao] = useState(true);
     
-    function reservSeat(){
-        if(disponivel === true){
+
+    function reservSeat(situacao){
+        if(situacao){
             setCorAssento("rgb(25, 175, 158)");
-        } 
-    }
+            setSituacao(false);
+            setAssentoEscolhido([...assentoEscolhido, id]);
+            setAssentoNumero([...assentoNumero, item.name]);
+
+        } else {
+            setCorAssento("rgb(195, 208, 217)");
+            setSituacao(true);
+            let arr = assentoEscolhido.filter((item) => item !== id);
+            setAssentoEscolhido([...arr]);
+            let arr2 = assentoNumero.filter((par) => par !== item.name);
+            setAssentoNumero([...arr2]);
+        }
+
+    
+    } 
 
     return (
         <>
-            <DivSeats onClick={reservSeat} state={corAssento} color={colorAtual}> {item.name} </DivSeats>  
+           {disponivel 
+           
+           ?
+
+           <DivSeats  onClick={() => reservSeat(situacao)} 
+           color={corAssento}> 
+           {item.name} 
+           </DivSeats>  
+           
+           :
+
+           <DivSeats   
+           color={"rgb(251, 227, 140)"}> 
+           {item.name} 
+           </DivSeats> }
+
         </>
     )
 }
