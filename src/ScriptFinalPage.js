@@ -49,7 +49,11 @@ export default function ScriptFinalPage({dados}) {
 }
 
 const Main = styled.main`
-    margin-left: 24px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 
 const DivSucesso = styled.div`
@@ -80,6 +84,10 @@ const DivFilme = styled.div`
 
 const DivIngresso = styled.div`
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 145px;
     h2{
         font-size: 24px;
         font-weight: 700;
@@ -92,7 +100,11 @@ const DivIngresso = styled.div`
 `
 
 const DivComprador = styled.div`
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 50px;
      h2{
         font-size: 24px;
         font-weight: 700;

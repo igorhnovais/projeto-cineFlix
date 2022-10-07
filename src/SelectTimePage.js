@@ -74,6 +74,8 @@ export default function SelectTimePage() {
 const Main = styled.main`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-bottom:20px;
 
 `
@@ -115,7 +117,7 @@ const Footer = styled.footer`
     width: 100%;
     height: 117px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     position: fixed;
     bottom: 0;

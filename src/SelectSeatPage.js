@@ -264,10 +264,10 @@ const ButtonReservAsset = styled.button`
 `
 
 const Footer = styled.footer`
-   width: 100%;
+    width: 100%;
     height: 117px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     position: fixed;
     bottom: 0;
