@@ -26,7 +26,7 @@ export default function SelectTimePage() {
         promise.catch((erro => { alert('Tente de novo mais tarde') }));
 
 
-    }, [])
+    }, [idFilme])
 
     if (filme.length === 0) {
         return (
@@ -62,12 +62,11 @@ export default function SelectTimePage() {
                     )};
 
                 </SectionDayTime>
-
-                <Footer>
-                    <img src={filme.posterURL} />
-                    <h3> {filme.title} </h3>
-                </Footer>
             </Main>
+            <Footer>
+                <img src={filme.posterURL} />
+                <h3> {filme.title} </h3>
+            </Footer>
         </>
     )
 }
@@ -99,14 +98,14 @@ const DivDayMovie = styled.div`
 `
 
 const ButtonTime = styled.button`
-            background-color: #E8833A;
-            font-size: 18px;
-            color: white;
-            width: 83px;
-            height: 43px;
-            border: none;
-            margin-right: 5px;
-            margin-bottom: 30px;
+    background-color: #E8833A;
+    font-size: 18px;
+    color: white;
+    width: 83px;
+    height: 43px;
+    border: none;
+    margin-right: 5px;
+    margin-bottom: 30px;
 `
 
 const Footer = styled.footer`
@@ -117,13 +116,14 @@ const Footer = styled.footer`
     align-items: center;
     position: fixed;
     bottom: 0;
+    left: 0;
     background-color: rgb(223, 230, 238);
-    margin-left: 24px;
-
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.35);
     img{
         width: 50px;
         margin-right: 15px;
-        border: 8px solid white;  
+        border: 8px solid white; 
+        margin-left: 24px; 
     }
     h3{
         font-size: 26px;

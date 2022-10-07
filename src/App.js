@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 export default function App() {
 
-    const [dados, setDados] = useState([]);
+    const [dados, setDados] = useState(false);
 
     console.log(dados);
 
@@ -56,6 +56,9 @@ const Header = styled.header`
     align-items: center;
     font-size: 34px;
     font-weight: 400;
+    position: fixed;
+    top:0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.35);
     h1{
         color: #E8833A;
     }

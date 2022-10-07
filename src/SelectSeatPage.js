@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Seat from "./Seat";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +23,7 @@ export default function SelectSeat({ obj }) {
         promise.then(resp => setAssento(resp.data));
 
         promise.catch((erro => { alert('Tente de novo mais tarde') }));
-    }, [])
+    }, [idSessao])
 
 
     const objFinal = {
@@ -92,39 +91,36 @@ export default function SelectSeat({ obj }) {
 
 
                 <SectionTypesSeats>
-                    <div>
+                    <DivSumary>
                         <DivSeats1></DivSeats1>
                         <h4> Selecionado </h4>
-                    </div>
-                    <div>
+                    </DivSumary>
+                    <DivSumary>
                         <DivSeats></DivSeats>
                         <h4> Disponível </h4>
-                    </div>
-                    <div>
+                    </DivSumary>
+                    <DivSumary>
                         <DivSeats3></DivSeats3>
                         <h4> Indisponível </h4>
-                    </div>
+                    </DivSumary>
 
                 </SectionTypesSeats>
 
                 <SectionReservAsset>
                     <form onSubmit={reservarAssento}>
-                        <div>
+                        <DivInput>
                             <label htmlFor="name"> Nome do comprador: </label>
-                            <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite seu nome" required ></input>
-                        </div>
-                        <div>
+                            <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite seu nome..." required ></input>
+                        </DivInput>
+                        <DivInput>
                             <label htmlFor="cpf"> Cpf do comprador: </label>
-                            <input id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu cpf" pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" required ></input>
-                        </div>
-                        
-                        <ButtonReservAsset type="submit"> Reservar assento(s)</ButtonReservAsset>
-                        
+                            <input id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu CPF..." pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" required ></input>
+                        </DivInput>
+                        <DivBotao>
+                            <ButtonReservAsset type="submit"> Reservar assento(s)</ButtonReservAsset>
+                        </DivBotao>
                     </form>
                 </SectionReservAsset>
-
-
-
             </Main>
 
             <Footer>
@@ -169,6 +165,15 @@ const SectionTypesSeats = styled.section`
     }
     
 `
+
+const DivSumary = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0 20px;
+`
+
 const SectionAllSeats = styled.section`
     display: flex;
     justify-content: center;
@@ -189,6 +194,7 @@ const DivSeats = styled.div`
     line-height: 23px;
     border-radius: 14px;
 `
+
 const DivSeats1 = styled.div`
     background-color: rgb(25, 175, 158);
     width: 22px;
@@ -215,6 +221,7 @@ const DivSeats3 = styled.div`
 
 const SectionReservAsset = styled.section`
     margin-top: 40px;
+    width: 340px;
 
     h2{
         margin-top: 10px;
@@ -225,6 +232,21 @@ const SectionReservAsset = styled.section`
         height: 45px;
         margin-top: 10px;
     }
+`
+
+const DivInput = styled.div`
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    input{
+        color: #AFAFAF;
+    }
+`
+
+const DivBotao = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const ButtonReservAsset = styled.button`
@@ -247,12 +269,12 @@ const Footer = styled.footer`
     position: fixed;
     bottom: 0;
     background-color: rgb(223, 230, 238);
-    margin-left: 24px;
-
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.35);
     img{
         width: 50px;
         margin-right: 15px;
         border: 8px solid white;  
+        margin-left: 24px;
     }
     h3{
         font-size: 26px;
