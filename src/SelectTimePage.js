@@ -21,7 +21,6 @@ export default function SelectTimePage() {
 
         function recebeFilme(resp) {
             setFilme(resp.data)
-            console.log(resp.data);
         }
 
         promise.catch((erro => { alert('Tente de novo mais tarde') }));

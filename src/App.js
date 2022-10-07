@@ -4,6 +4,7 @@ import GlobalStyle from "./GlobalStyle";
 import SelectMoviePage from "./SelectMoviePage";
 import SelectTimePage from "./SelectTimePage";
 import SelectSeatPage from "./SelectSeatPage";
+import ScriptFinalPage from "./ScriptFinalPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -12,7 +13,9 @@ import { Link } from "react-router-dom";
 
 export default function App() {
 
-    const [dadosObj, setDadosObj] = useState("");
+    const [dados, setDados] = useState([]);
+
+    console.log(dados);
 
     return (
         <BrowserRouter>
@@ -30,9 +33,9 @@ export default function App() {
 
                     <Route path={"/sessoes/:idFilme"} element={<SelectTimePage />} />
 
-                    <Route path={"/assentos/:idSessao"} element={<SelectSeatPage />} />
+                    <Route path={"/assentos/:idSessao"} element={<SelectSeatPage obj={setDados}/>} />
 
-                    {/* <Route path={"/sucesso"} element={<ScriptFinalPage/>} /> */}
+                    <Route path={"/sucesso"} element={<ScriptFinalPage dados={dados}/>} />
                 </Routes>
             </Body>
         </BrowserRouter>

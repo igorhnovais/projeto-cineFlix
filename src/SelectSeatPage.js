@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Seat from "./Seat";
+import { useNavigate } from "react-router-dom";
 
-export default function SelectSeat() {
+export default function SelectSeat({ obj }) {
 
     const { idSessao } = useParams();
 
     const [assento, setAssento] = useState([]); //array de objeto
     const [assentoEscolhido, setAssentoEscolhido] = useState([]);
     const [assentoNumero, setAssentoNumero] = useState([]);
-    const [nome, setNome] = useState("");
+    const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
 
 
@@ -27,20 +29,37 @@ export default function SelectSeat() {
 
     const objFinal = {
         ids: assentoEscolhido,
-        name: nome,
+        name: name,
         cpf: cpf
     }
 
-    function reservarAssento() {
+
+    let navigate = useNavigate();
+
+    function reservarAssento(event) {
+        event.preventDefault();
+
+        const objSucesso = {
+            titulo: assento.movie.title,
+            assentos: assentoNumero,
+            dia: assento.day.date,
+            horario: assento.name,
+            nome: name,
+            cpf: cpf
+        }
+
+        obj(objSucesso);
 
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", objFinal);
 
         requisicao.then((resp => { alert("deu certo de mandar a requisição") }));
 
         requisicao.catch((erro => { alert('Tente de novo mais tarde') }));
+
+        
+        navigate("/sucesso");
+
     }
-
-
 
 
     if (assento.length === 0) {
@@ -50,9 +69,6 @@ export default function SelectSeat() {
             </Divloading>
         )
     }
-
-    console.log(assentoEscolhido);
-    console.log(assentoNumero);
 
     return (
         <>
@@ -92,19 +108,22 @@ export default function SelectSeat() {
                 </SectionTypesSeats>
 
                 <SectionReservAsset>
-                    <form>
+                    <form onSubmit={reservarAssento}>
                         <div>
-                            <h2> Nome do comprador:</h2>
-                            <input value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Digite seu nome"></input>
+                            <label htmlFor="name"> Nome do comprador: </label>
+                            <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite seu nome" required ></input>
                         </div>
                         <div>
-                            <h2> Cpf do comprador:</h2>
-                            <input value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu cpf"></input>
+                            <label htmlFor="cpf"> Cpf do comprador: </label>
+                            <input id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu cpf" pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" required ></input>
                         </div>
+                        
+                        <ButtonReservAsset type="submit"> Reservar assento(s)</ButtonReservAsset>
+                        
                     </form>
                 </SectionReservAsset>
 
-                <ButtonReservAsset onClick={reservarAssento}> Reservar assento(s)</ButtonReservAsset>
+
 
             </Main>
 
