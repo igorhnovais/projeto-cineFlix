@@ -38,8 +38,8 @@ export default function SelectMovie() {
                 <SectionMovies>
 
                     {movie.map(item =>
-                        <Link to={"/sessoes/" + item.id}>
-                            <img src={item.posterURL} alt={"foto de capa do filme"} key={item.id} />
+                        <Link to={"/sessoes/" + item.id} key={item.id}>
+                            <img src={item.posterURL} alt={"foto de capa do filme"}/>
                         </Link>
                     )}
 
@@ -86,6 +86,7 @@ const Divloading = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 `
 
 const ImgLoading = styled.img`

@@ -15,8 +15,6 @@ export default function App() {
 
     const [dados, setDados] = useState(false);
 
-    console.log(dados);
-
     return (
         <BrowserRouter>
             <GlobalStyle />
@@ -48,7 +46,7 @@ const Body = styled.div`
 `
 
 const Header = styled.header`
-    background-color: rgb(195, 208, 217);
+    background-color: black;
     height: 67px;
     width: 100%;
     display: flex;

@@ -45,13 +45,13 @@ export default function SelectSeat({ obj }) {
             horario: assento.name,
             nome: name,
             cpf: cpf
-        }
+        };
 
         obj(objSucesso);
 
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", objFinal);
 
-        requisicao.then((resp => { alert("deu certo de mandar a requisição") }));
+        requisicao.then((resp => { console.log("deu certo de mandar a requisição") }));
 
         requisicao.catch((erro => { alert('Tente de novo mais tarde') }));
 
@@ -64,7 +64,7 @@ export default function SelectSeat({ obj }) {
     if (assento.length === 0) {
         return (
             <Divloading>
-                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
+                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" alt={"Loading gif"}/>
             </Divloading>
         )
     }
@@ -124,7 +124,7 @@ export default function SelectSeat({ obj }) {
             </Main>
 
             <Footer>
-                <img src={assento.movie.posterURL} />
+                <img src={assento.movie.posterURL} alt="poster do Filme" />
                 <div>
                     <h3> {assento.movie.title} </h3>
                     <h3> {assento.day.weekday} - {assento.name} </h3>
@@ -150,6 +150,7 @@ const SectionTitle = styled.section`
     width: 100%;
     font-size: 24px;
     font-weight: 400;
+    margin-top: 80px;
 `
 
 const SectionTypesSeats = styled.section`
@@ -222,6 +223,7 @@ const DivSeats3 = styled.div`
 const SectionReservAsset = styled.section`
     margin-top: 40px;
     width: 340px;
+    margin-bottom: 50px;
 
     h2{
         margin-top: 10px;
@@ -240,6 +242,7 @@ const DivInput = styled.div`
     flex-direction: column;
     input{
         color: #AFAFAF;
+        font-size: 18px;
     }
 `
 
@@ -268,13 +271,14 @@ const Footer = styled.footer`
     align-items: center;
     position: fixed;
     bottom: 0;
-    background-color: rgb(223, 230, 238);
+    background-color: gray;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.35);
     img{
         width: 50px;
         margin-right: 15px;
         border: 8px solid white;  
         margin-left: 24px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
     }
     h3{
         font-size: 26px;
@@ -288,6 +292,7 @@ const Divloading = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 `
 
 const ImgLoading = styled.img`

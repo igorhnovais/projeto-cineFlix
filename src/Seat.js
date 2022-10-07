@@ -13,8 +13,7 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
             setSituacao(false);
             setAssentoEscolhido([...assentoEscolhido, id]);
             setAssentoNumero([...assentoNumero, item.name]);
-
-        } else {
+        }  else {           
             setCorAssento("rgb(195, 208, 217)");
             setSituacao(true);
             let arr = assentoEscolhido.filter((item) => item !== id);
@@ -22,9 +21,12 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
             let arr2 = assentoNumero.filter((par) => par !== item.name);
             setAssentoNumero([...arr2]);
         }
-
-    
+  
     } 
+
+    function unavailable(){
+        alert('Esse assento não está disponível');
+    }
 
     return (
         <>
@@ -39,7 +41,7 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
            
            :
 
-           <DivSeats   
+           <DivSeats onClick={unavailable}
            color={"rgb(251, 227, 140)"}> 
            {item.name} 
            </DivSeats> }

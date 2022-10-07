@@ -30,7 +30,7 @@ export default function ScriptFinalPage({dados}) {
                 </DivFilme>
                 <DivIngresso>
                     <h2> Ingressos </h2>
-                    {dados.assentos.map((item) => <p> Assento {item}</p>)}
+                    {dados.assentos.map((item, i) => <p key={i}> Assento {item}</p>)}
                 </DivIngresso>
                 <DivComprador>
                     <h2> Comprador </h2>
@@ -127,6 +127,7 @@ const Divloading = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 `
 
 const ImgLoading = styled.img`

@@ -52,8 +52,8 @@ export default function SelectTimePage() {
                             </DivDayMovie>
                             <div>
                                 {item.showtimes.map((item) => 
-                                <Link to={"/assentos/" + item.id}>
-                                    <ButtonTime key={item.id}> 
+                                <Link to={"/assentos/" + item.id} key={item.id}>
+                                    <ButtonTime> 
                                         {item.name} 
                                     </ButtonTime>
                                 </Link>)}
@@ -64,7 +64,7 @@ export default function SelectTimePage() {
                 </SectionDayTime>
             </Main>
             <Footer>
-                <img src={filme.posterURL} />
+                <img src={filme.posterURL} alt="Poster do Filme"/>
                 <h3> {filme.title} </h3>
             </Footer>
         </>
@@ -74,6 +74,8 @@ export default function SelectTimePage() {
 const Main = styled.main`
     display: flex;
     flex-direction: column;
+    margin-bottom:20px;
+
 `
 
 const SectionTitle = styled.section`
@@ -84,6 +86,7 @@ const SectionTitle = styled.section`
             width: 100%;
             font-size: 24px;
             font-weight: 400;
+            margin-top: 80px;
 `
 
 const SectionDayTime = styled.section`
@@ -117,13 +120,14 @@ const Footer = styled.footer`
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: rgb(223, 230, 238);
+    background-color: gray;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.35);
     img{
         width: 50px;
         margin-right: 15px;
         border: 8px solid white; 
         margin-left: 24px; 
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
     }
     h3{
         font-size: 26px;
@@ -137,6 +141,7 @@ const Divloading = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 `
 
 const ImgLoading = styled.img`
