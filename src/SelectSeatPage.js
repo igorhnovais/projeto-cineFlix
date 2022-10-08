@@ -178,17 +178,17 @@ const DivSumary = styled.div`
 `
 
 const SectionAllSeats = styled.section`
+    width: 375px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin: 0 10px;
+    gap: 6px;
 `
 
 const DivSeats = styled.div`
     background-color: rgb(195, 208, 217);
-    width: 22px;
+    width: 30px;
     height: 22px;
     border: 1px solid black;
     justify-content: center;
@@ -196,12 +196,12 @@ const DivSeats = styled.div`
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
 `
 
 const DivSeats1 = styled.div`
     background-color: rgb(25, 175, 158);
-    width: 22px;
+    width: 30px;
     height: 22px;
     border: 1px solid black;
     justify-content: center;
@@ -209,12 +209,12 @@ const DivSeats1 = styled.div`
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
 `
 
 const DivSeats3 = styled.div`
     background-color: rgb(251, 227, 140);
-    width: 22px;
+    width: 30px;
     height: 22px;
     border: 1px solid black;
     justify-content: center;
@@ -222,7 +222,7 @@ const DivSeats3 = styled.div`
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
 `
 
 const SectionReservAsset = styled.section`

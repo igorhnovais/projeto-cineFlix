@@ -50,17 +50,18 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
 
 const DivSeats = styled.div`
     background-color: ${props => props.color ==="" ? props.state : props.color};
-    width: 22px;
+    width: 30px;
     height: 22px;
     border: 1px solid black;
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+    margin-top: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
 
     cursor: pointer;
     text-decoration: none;
