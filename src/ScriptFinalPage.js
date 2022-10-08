@@ -23,16 +23,16 @@ export default function ScriptFinalPage({dados}) {
                 <DivSucesso>
                     <h1> Pedido feito com sucesso!</h1>
                 </DivSucesso>
-                <DivFilme>
+                <DivFilme data-identifier="movie-session-infos-reserve-finished">
                     <h2> Filme e sessão </h2>
                     <p>{dados.titulo}</p>
                     <p>{dados.dia} - {dados.horario}</p>
                 </DivFilme>
-                <DivIngresso>
+                <DivIngresso data-identifier="seat-infos-reserve-finished">
                     <h2> Ingressos </h2>
                     {dados.assentos.map((item, i) => <p key={i}> Assento {item}</p>)}
                 </DivIngresso>
-                <DivComprador>
+                <DivComprador data-identifier="buyer-infos-reserve-finished">
                     <h2> Comprador </h2>
                     <p>Nome: {dados.nome}</p>
                     <p>CPF: {cpf}</p>
@@ -41,7 +41,7 @@ export default function ScriptFinalPage({dados}) {
 
             <DivBotao>
                 <Link to="/">
-                    <Button> Voltar pra home </Button>
+                    <Button data-identifier="back-to-home-btn"> Voltar pra home </Button>
                 </Link>
             </DivBotao>
         </>
@@ -70,6 +70,9 @@ const DivSucesso = styled.div`
 `
 
 const DivFilme = styled.div`
+    width: 256px;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 30px;
     h2{
         font-size: 24px;
@@ -83,11 +86,11 @@ const DivFilme = styled.div`
 `
 
 const DivIngresso = styled.div`
+    width: 256px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 145px;
     h2{
         font-size: 24px;
         font-weight: 700;
@@ -100,11 +103,11 @@ const DivIngresso = styled.div`
 `
 
 const DivComprador = styled.div`
+    width: 256px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 50px;
      h2{
         font-size: 24px;
         font-weight: 700;
@@ -131,6 +134,21 @@ const Button = styled.button`
     border: none;
     margin-right: 5px;
     margin-bottom: 30px;
+
+    border-radius: 5px;
+    box-shadow: #422800 4px 4px 0 0; 
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    :hover {
+    background-color: rgb(190, 93, 25);
+    }
+    :active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
 `
 
 const Divloading = styled.div`

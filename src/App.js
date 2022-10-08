@@ -43,6 +43,9 @@ export default function App() {
 const Body = styled.div`
     font-family: roboto;
     color: #293845;
+    *{
+        box-sizing: border-box;
+    }
 `
 
 const Header = styled.header`

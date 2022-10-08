@@ -39,7 +39,7 @@ export default function SelectMovie() {
 
                     {movie.map(item =>
                         <Link to={"/sessoes/" + item.id} key={item.id}>
-                            <img src={item.posterURL} alt={"foto de capa do filme"}/>
+                            <img src={item.posterURL} alt={"foto de capa do filme"} data-identifier="movie-outdoor"/>
                         </Link>
                     )}
 
@@ -65,6 +65,8 @@ const SectionTitle = styled.section`
     width: 100%;
     font-size: 24px;
     font-weight: 400;
+    margin-top: 80px;
+    font-size: 28px;
 `
 
 const SectionMovies = styled.section` 
@@ -77,6 +79,7 @@ const SectionMovies = styled.section`
    img{
     width: 140px;
     margin-top: 10px;
+    box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.8);
    }
 `
 

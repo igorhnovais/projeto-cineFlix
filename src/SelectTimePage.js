@@ -48,12 +48,12 @@ export default function SelectTimePage() {
                     {filme.days.map((item) =>
                         <nav key={item.id}>
                             <DivDayMovie>
-                                <h2> {item.weekday} - {item.date} </h2>
+                                <h2 data-identifier="session-date"> {item.weekday} - {item.date} </h2>
                             </DivDayMovie>
                             <div>
                                 {item.showtimes.map((item) => 
                                 <Link to={"/assentos/" + item.id} key={item.id}>
-                                    <ButtonTime> 
+                                    <ButtonTime data-identifier="hour-minute-btn"> 
                                         {item.name} 
                                     </ButtonTime>
                                 </Link>)}
@@ -64,8 +64,10 @@ export default function SelectTimePage() {
                 </SectionDayTime>
             </Main>
             <Footer>
-                <img src={filme.posterURL} alt="Poster do Filme"/>
-                <h3> {filme.title} </h3>
+                <div>
+                    <img src={filme.posterURL} alt="Poster do Filme" data-identifier="movie-img-preview"/>
+                    <h3> {filme.title} </h3>
+                </div>
             </Footer>
         </>
     )
@@ -77,18 +79,21 @@ const Main = styled.main`
     justify-content: center;
     align-items: center;
     margin-bottom:20px;
+    margin-right: 80px;
 
 `
 
 const SectionTitle = styled.section`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 110px;
-            width: 100%;
-            font-size: 24px;
-            font-weight: 400;
-            margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    width: 100%;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: 80px;
+    margin-left: 80px;
+
 `
 
 const SectionDayTime = styled.section`
@@ -111,6 +116,21 @@ const ButtonTime = styled.button`
     border: none;
     margin-right: 5px;
     margin-bottom: 30px;
+    
+    border-radius: 5px;
+    box-shadow: #422800 4px 4px 0 0; 
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    :hover {
+    background-color: rgb(190, 93, 25);
+    }
+    :active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
 `
 
 const Footer = styled.footer`
@@ -124,11 +144,18 @@ const Footer = styled.footer`
     left: 0;
     background-color: gray;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.35);
+    div{
+        width: 330px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
     img{
-        width: 50px;
+        max-width: 60px;
         margin-right: 15px;
+        margin-left: 10px;
         border: 8px solid white; 
-        margin-left: 24px; 
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
     }
     h3{

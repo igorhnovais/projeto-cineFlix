@@ -24,10 +24,6 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
   
     } 
 
-    function unavailable(){
-        alert('Esse assento não está disponível');
-    }
-
     return (
         <>
            {disponivel 
@@ -35,14 +31,16 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
            ?
 
            <DivSeats  onClick={() => reservSeat(situacao)} 
-           color={corAssento}> 
+           color={corAssento}
+           data-identifier="seat"> 
            {item.name} 
            </DivSeats>  
            
            :
 
-           <DivSeats onClick={unavailable}
-           color={"rgb(251, 227, 140)"}> 
+           <DivSeats onClick={() => alert('Esse assento não está disponível')}
+           color={"rgb(251, 227, 140)"}
+           data-identifier="seat"> 
            {item.name} 
            </DivSeats> }
 
@@ -57,7 +55,23 @@ const DivSeats = styled.div`
     border: 1px solid black;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
+    font-weight: 700;
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    :hover {
+    background-color: rgb(138, 176, 214);
+    }
+    :active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
 `

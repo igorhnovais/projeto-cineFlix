@@ -9,7 +9,7 @@ export default function SelectSeat({ obj }) {
 
     const { idSessao } = useParams();
 
-    const [assento, setAssento] = useState([]); //array de objeto
+    const [assento, setAssento] = useState([]);
     const [assentoEscolhido, setAssentoEscolhido] = useState([]);
     const [assentoNumero, setAssentoNumero] = useState([]);
     const [name, setName] = useState("");
@@ -93,15 +93,15 @@ export default function SelectSeat({ obj }) {
                 <SectionTypesSeats>
                     <DivSumary>
                         <DivSeats1></DivSeats1>
-                        <h4> Selecionado </h4>
+                        <h4 data-identifier="seat-selected-subtitle"> Selecionado </h4>
                     </DivSumary>
                     <DivSumary>
                         <DivSeats></DivSeats>
-                        <h4> Disponível </h4>
+                        <h4 data-identifier="seat-available-subtitle"> Disponível </h4>
                     </DivSumary>
                     <DivSumary>
                         <DivSeats3></DivSeats3>
-                        <h4> Indisponível </h4>
+                        <h4 data-identifier="seat-unavailable-subtitle"> Indisponível </h4>
                     </DivSumary>
 
                 </SectionTypesSeats>
@@ -110,24 +110,26 @@ export default function SelectSeat({ obj }) {
                     <form onSubmit={reservarAssento}>
                         <DivInput>
                             <label htmlFor="name"> Nome do comprador: </label>
-                            <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite seu nome..." required ></input>
+                            <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite seu nome..." data-identifier="buyer-name-input" required ></input>
                         </DivInput>
                         <DivInput>
                             <label htmlFor="cpf"> Cpf do comprador: </label>
-                            <input id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu CPF..." pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" required ></input>
+                            <input id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu CPF..." pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" data-identifier="buyer-cpf-input" required ></input>
                         </DivInput>
                         <DivBotao>
-                            <ButtonReservAsset type="submit"> Reservar assento(s)</ButtonReservAsset>
+                            <ButtonReservAsset type="submit" data-identifier="reservation-btn"> Reservar assento(s)</ButtonReservAsset>
                         </DivBotao>
                     </form>
                 </SectionReservAsset>
             </Main>
 
             <Footer>
-                <img src={assento.movie.posterURL} alt="poster do Filme" />
-                <div>
-                    <h3> {assento.movie.title} </h3>
-                    <h3> {assento.day.weekday} - {assento.name} </h3>
+                <div data-identifier="movie-and-session-infos-preview">
+                    <img src={assento.movie.posterURL} alt="poster do Filme" />
+                    <section>
+                        <h3> {assento.movie.title} </h3>
+                        <h3> {assento.day.weekday} - {assento.name} </h3>
+                    </section>
                 </div>
             </Footer>
         </>
@@ -148,7 +150,7 @@ const SectionTitle = styled.section`
     align-items: center;
     height: 110px;
     width: 100%;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 400;
     margin-top: 80px;
 `
@@ -194,6 +196,7 @@ const DivSeats = styled.div`
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
 `
 
 const DivSeats1 = styled.div`
@@ -206,6 +209,7 @@ const DivSeats1 = styled.div`
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
 `
 
 const DivSeats3 = styled.div`
@@ -218,6 +222,7 @@ const DivSeats3 = styled.div`
     text-align: center;
     line-height: 23px;
     border-radius: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
 `
 
 const SectionReservAsset = styled.section`
@@ -261,6 +266,21 @@ const ButtonReservAsset = styled.button`
     height: 42px;
     margin-top: 40px;
     margin-bottom: 10px;
+
+    border-radius: 5px;
+    box-shadow: #422800 4px 4px 0 0; 
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    :hover {
+    background-color: rgb(190, 93, 25);
+    }
+    :active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
 `
 
 const Footer = styled.footer`
@@ -273,16 +293,24 @@ const Footer = styled.footer`
     bottom: 0;
     background-color: gray;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.35);
+    div{
+        width: 330px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
     img{
-        width: 50px;
+        max-width: 60px;
         margin-right: 15px;
-        border: 8px solid white;  
-        margin-left: 24px;
+        margin-left: 10px;
+        border: 8px solid white; 
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
     }
     h3{
-        font-size: 26px;
+        font-size: 24px;
         color: #293845;
+        margin-top: 10px;
     } 
 `
 
