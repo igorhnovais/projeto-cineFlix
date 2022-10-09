@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import Seat from "./Seat";
+
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SelectSeat({ obj }) {
@@ -14,6 +15,7 @@ export default function SelectSeat({ obj }) {
     const [assentoNumero, setAssentoNumero] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
+    let navigate = useNavigate();
 
 
     useEffect(() => {
@@ -32,8 +34,6 @@ export default function SelectSeat({ obj }) {
         cpf: cpf
     }
 
-
-    let navigate = useNavigate();
 
     function reservarAssento(event) {
         event.preventDefault();

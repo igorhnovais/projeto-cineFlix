@@ -1,5 +1,7 @@
 import styled from "styled-components";
+
 import { useState } from "react";
+
 
 export default function Seat({item, disponivel, assentoEscolhido, setAssentoEscolhido, id, assentoNumero, setAssentoNumero}) {
 
@@ -21,7 +23,6 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
             let arr2 = assentoNumero.filter((par) => par !== item.name);
             setAssentoNumero([...arr2]);
         }
-  
     } 
 
     return (
@@ -49,7 +50,7 @@ export default function Seat({item, disponivel, assentoEscolhido, setAssentoEsco
 }
 
 const DivSeats = styled.div`
-    background-color: ${props => props.color ==="" ? props.state : props.color};
+    background-color: ${props => props.color === "" ? "" : props.color};
     width: 30px;
     height: 22px;
     border: 1px solid black;

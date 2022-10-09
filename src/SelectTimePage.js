@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
 import axios from "axios";
+
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -20,7 +21,7 @@ export default function SelectTimePage() {
         promise.then(recebeFilme);
 
         function recebeFilme(resp) {
-            setFilme(resp.data)
+            setFilme(resp.data);
         }
 
         promise.catch((erro => { alert('Tente de novo mais tarde') }));

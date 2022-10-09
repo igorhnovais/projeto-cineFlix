@@ -5,15 +5,22 @@ export default function ScriptFinalPage({dados}) {
 
     if (!dados) {
         return (
-            <Divloading>
-                <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
-            </Divloading>
+            <>
+                <Divloading>
+                    <ImgLoading src="http://www.sitiosaocarlos.com.br/imgsite/loading.gif" />
+                </Divloading>
+                <DivBotao>
+                    <Link to="/">
+                        <Button data-identifier="back-to-home-btn"> Voltar pra home </Button>
+                    </Link>
+                </DivBotao>
+            </>
         )
     }
 
     let cpf = dados.cpf;
     cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/,
-    function( regex, argumento1, argumento2, argumento3, argumento4 ) {
+    function( argumento1, argumento2, argumento3, argumento4 ) {
            return argumento1 + '.' + argumento2 + '.' + argumento3 + '-' + argumento4;
    })
 
